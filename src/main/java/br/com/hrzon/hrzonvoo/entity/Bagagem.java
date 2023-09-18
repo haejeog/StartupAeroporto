@@ -1,8 +1,8 @@
 package br.com.hrzon.hrzonvoo.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,8 +16,7 @@ import lombok.Data;
 public class Bagagem {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private UUID id;
 
 	private String numeroIdentificacaoUnico;
 

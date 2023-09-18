@@ -1,11 +1,10 @@
 package br.com.hrzon.hrzonvoo.entity;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,25 +20,22 @@ import lombok.Data;
 public class Voo {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @ManyToOne
-    @JoinColumn(name = "aeroporto_origem_codigo")
-    private Aeroporto aeroportoOrigem;
-    
-    @ManyToOne
-    @JoinColumn(name = "aeroporto_destino_codigo")
-    private Aeroporto aeroportoDestino;
-    
-    @Column(unique = true)
-    private String numeracaoUnica;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataHoraPartida;
-    
-    private int capacidadeMaximaPassageiros;
+	private UUID id;
 
-   
+	@ManyToOne
+	@JoinColumn(name = "aeroporto_origem_codigo")
+	private Aeroporto aeroportoOrigem;
+
+	@ManyToOne
+	@JoinColumn(name = "aeroporto_destino_codigo")
+	private Aeroporto aeroportoDestino;
+
+	@Column(unique = true)
+	private String numeracaoUnica;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataHoraPartida;
+
+	private int capacidadeMaximaPassageiros;
+
 }
-
