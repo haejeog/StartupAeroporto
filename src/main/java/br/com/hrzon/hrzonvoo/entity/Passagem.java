@@ -1,5 +1,6 @@
 package br.com.hrzon.hrzonvoo.entity;
 
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Passagem {
 	private String numeroIdentificacaoUnico;
 	private String nomePassageiro;
 	private String cpfPassageiro;
-	private String dataNascimentoPassageiro;
+	private Date dataNascimentoPassageiro;
 	private Double precoTotalPassagem;
 	private boolean bagagemDespachada;
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.hrzon.hrzonvoo.entity.Visitante;
-import br.com.hrzon.hrzonvoo.entity.Voo;
 import br.com.hrzon.hrzonvoo.mapper.VisitanteMapper;
 import br.com.hrzon.hrzonvoo.repository.VisitanteRepository;
 import br.com.hrzon.hrzonvoo.response.ListaVisitanteResponse;
@@ -28,9 +27,7 @@ public class VisitanteServiceImpl implements VisitanteService {
 
 	@Override
 	public ListaVisitanteResponse listarPassageiroPorVoo(UUID vooId) {
-		Voo voo = new Voo();
-		voo.setId(vooId);
-		List<UUID> visitanteListId = passagemServiceImpl.listarPassageiroPorVoo(voo);
+		List<UUID> visitanteListId = passagemServiceImpl.listarPassageiroIdPorVoo(vooId);
 		List<Visitante> visitanteList = new ArrayList<>();
 
 		for (UUID visitanteId : visitanteListId) {
@@ -38,6 +35,11 @@ public class VisitanteServiceImpl implements VisitanteService {
 		}
 		return visitanteMapper.convertToList(visitanteList);
 
+	}
+
+	@Override
+	public Visitante criarVisitante(Visitante visitante) {
+		return visitanteRepository.saveAndFlush(visitante);
 	}
 
 }

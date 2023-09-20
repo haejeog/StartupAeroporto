@@ -1,5 +1,6 @@
 package br.com.hrzon.hrzonvoo.request;
 
+import java.util.List;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +18,6 @@ public class ComprarPassagemRequest {
 
 	private UUID vooId;
 
-	private ComprarClasseAviaoRequest comprarClasseAviaoRequest;
+	private List<ComprarClasseAviaoRequest> comprarClasseAviaoRequest;
 
 }

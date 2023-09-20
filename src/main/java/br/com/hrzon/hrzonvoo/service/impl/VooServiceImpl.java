@@ -54,6 +54,11 @@ public class VooServiceImpl implements VooService {
 		vooRepository.saveAndFlush(vooEntity);
 
 	}
+	@Override
+	public void atualizarQuantAssentoVoo(Voo voo, List<ClasseAviao> classe) {
+		classeAviaoServiceImpl.atualizarQuantAssentoClasse(classe);
+		vooRepository.saveAndFlush(voo);
+	}
 
 	@Override
 	public void cadastrarVoo(VooRequest vooRequest) {

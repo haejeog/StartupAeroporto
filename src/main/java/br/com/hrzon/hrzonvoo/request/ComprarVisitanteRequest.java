@@ -4,6 +4,15 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComprarVisitanteRequest {
 	@JsonProperty("nome")
 	private String nome;
@@ -16,7 +25,7 @@ public class ComprarVisitanteRequest {
 
 	@JsonProperty("email")
 	private String email;
-	
+
 	@JsonProperty("bagagemDespachada")
 	private boolean bagagemDespachada;
 }

@@ -47,4 +47,17 @@ public class ClasseAviaoServiceImpl implements ClasseAviaoService {
 		}
 	}
 
+	@Override
+	public List<ClasseAviao> buscarClassesPorVoo(Voo voo) {
+		return classeRepository.findByVoo(voo);
+
+	}
+
+	@Override
+	public void atualizarQuantAssentoClasse(List<ClasseAviao> classe) {
+		for (ClasseAviao classeAviao : classe) {
+			classeRepository.saveAndFlush(classeAviao);
+		}
+
+	}
 }

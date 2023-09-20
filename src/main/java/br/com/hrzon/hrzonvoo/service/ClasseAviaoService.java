@@ -15,6 +15,8 @@ public interface ClasseAviaoService {
 
 	ClasseAviao alterarClasse(ClasseAviaoRequestAlterar classeAviaoRequest);
 
-	ClasseAviao buscarClassesPorVoo(Voo voo);
+	List<ClasseAviao> buscarClassesPorVoo(Voo voo);
+
+	void atualizarQuantAssentoClasse(List<ClasseAviao> classe);
 
 }
