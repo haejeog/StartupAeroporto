@@ -1,6 +1,6 @@
 package br.com.hrzon.hrzonvoo.request;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComprarPassagemRequest {
+public class AlterarPrecoPassagemRequest {
 
-	private VisitanteRequest visitanteRequest;
+	@JsonProperty("idPassagem")
+	private Long idPassagem;
 
-	private Long vooId;
-
-	private List<ComprarClasseAviaoRequest> comprarClasseAviaoRequest;
+	@JsonProperty("precoTotal")
+	private Double precoTotal;
 
 }

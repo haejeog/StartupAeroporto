@@ -1,10 +1,11 @@
 package br.com.hrzon.hrzonvoo.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import br.com.hrzon.hrzonvoo.entity.Passagem;
 import br.com.hrzon.hrzonvoo.request.CadastrarPassagemRequest;
+import br.com.hrzon.hrzonvoo.request.ComprarPassagemRequest;
+import br.com.hrzon.hrzonvoo.response.ListaVisitanteResponse;
 
 public interface PassagemService {
 
@@ -12,8 +13,10 @@ public interface PassagemService {
 
 	void cadastrarPassagem(CadastrarPassagemRequest cadastrarPassagemRequest);
 
-	void alterarPreco(UUID idPassagem, Double precoTotal);
+	ListaVisitanteResponse listarPassageiroIdPorVoo(Long voo);
 
-	List<UUID> listarPassageiroIdPorVoo(UUID voo);
+	void alterarPreco(Long idPassagem, Double precoTotal);
+
+	void comprarPassagem(ComprarPassagemRequest request);
 
 }

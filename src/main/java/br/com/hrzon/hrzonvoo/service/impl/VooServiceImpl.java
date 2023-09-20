@@ -2,7 +2,6 @@ package br.com.hrzon.hrzonvoo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import br.com.hrzon.hrzonvoo.request.VooRequestAlterar;
 import br.com.hrzon.hrzonvoo.response.ListaVooResponse;
 import br.com.hrzon.hrzonvoo.service.ClasseAviaoService;
 import br.com.hrzon.hrzonvoo.service.VooService;
-import br.com.hrzon.hrzonvoo.util.Util;
 
 @Service
 public class VooServiceImpl implements VooService {
@@ -54,6 +52,7 @@ public class VooServiceImpl implements VooService {
 		vooRepository.saveAndFlush(vooEntity);
 
 	}
+
 	@Override
 	public void atualizarQuantAssentoVoo(Voo voo, List<ClasseAviao> classe) {
 		classeAviaoServiceImpl.atualizarQuantAssentoClasse(classe);
@@ -69,7 +68,6 @@ public class VooServiceImpl implements VooService {
 			count += classeAviaoRequest.getQuantidadeAssentos();
 		}
 		Voo vooEntity = new Voo();
-		vooEntity.setId(Util.gerarUUID());
 		vooEntity.setAeroportoDestino(vooRequest.getAeroportoDestino());
 		vooEntity.setAeroportoOrigem(vooRequest.getAeroportoOrigem());
 		vooEntity.setCapacidadeMaximaPassageiros(count);
@@ -86,13 +84,13 @@ public class VooServiceImpl implements VooService {
 	}
 
 	@Override
-	public void cancelarVoo(UUID vooId) {
+	public void cancelarVoo(Long vooId) {
 		vooRepository.deleteById(vooId);
 
 	}
-	
+
 	@Override
-	public Voo buscarVoo(UUID vooId) {
+	public Voo buscarVoo(Long vooId) {
 		return vooRepository.findById(vooId).get();
 	}
 

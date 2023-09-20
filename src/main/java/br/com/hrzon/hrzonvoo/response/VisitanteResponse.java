@@ -1,7 +1,6 @@
 package br.com.hrzon.hrzonvoo.response;
 
 import java.util.Date;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VisitanteResponse {
 	@JsonProperty("id")
-	private UUID id;
+	private Long id;
 
 	@JsonProperty("nome")
 	private String nome;

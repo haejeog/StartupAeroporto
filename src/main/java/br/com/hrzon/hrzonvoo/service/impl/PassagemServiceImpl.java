@@ -3,7 +3,6 @@ package br.com.hrzon.hrzonvoo.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,7 @@ import br.com.hrzon.hrzonvoo.request.CadastrarPassagemRequest;
 import br.com.hrzon.hrzonvoo.request.ComprarClasseAviaoRequest;
 import br.com.hrzon.hrzonvoo.request.ComprarPassagemRequest;
 import br.com.hrzon.hrzonvoo.request.ComprarVisitanteRequest;
+import br.com.hrzon.hrzonvoo.response.ListaVisitanteResponse;
 import br.com.hrzon.hrzonvoo.service.ClasseAviaoService;
 import br.com.hrzon.hrzonvoo.service.PassagemService;
 import br.com.hrzon.hrzonvoo.service.VisitanteService;
@@ -40,16 +40,16 @@ public class PassagemServiceImpl implements PassagemService {
 	private int percentualAcrescimo = 10;
 
 	@Override
-	public List<UUID> listarPassageiroIdPorVoo(UUID voo) {
+	public ListaVisitanteResponse listarPassageiroIdPorVoo(Long voo) {
 		List<Passagem> passagemList = listarPassagemsPorVoo(voo);
-		List<UUID> compradoresId = new ArrayList<>();
+		List<Long> compradoresId = new ArrayList<>();
 		for (Passagem passagem : passagemList) {
 			compradoresId.add(passagem.getComprador().getId());
 		}
-		return compradoresId;
+		return visitanteService.listarPassageiroPorVoo(compradoresId);
 	}
 
-	private List<Passagem> listarPassagemsPorVoo(UUID voo) {
+	private List<Passagem> listarPassagemsPorVoo(Long voo) {
 		return passagemRepository.findByVoo(voo);
 
 	}
@@ -63,7 +63,6 @@ public class PassagemServiceImpl implements PassagemService {
 	public void cadastrarPassagem(CadastrarPassagemRequest request) {
 		Passagem passagem = new Passagem();
 		passagem.setClasse(request.getClasse());
-		passagem.setId(Util.gerarUUID());
 		passagem.setNumeroIdentificacaoUnico(Util.gerarUUID().toString());
 		passagem.setPrecoTotalPassagem(request.getPrecoTotalPassagem());
 		passagem.setVoo(request.getVoo());
@@ -72,12 +71,13 @@ public class PassagemServiceImpl implements PassagemService {
 	}
 
 	@Override
-	public void alterarPreco(UUID idPassagem, Double precoTotal) {
+	public void alterarPreco(Long idPassagem, Double precoTotal) {
 		Passagem passagemEntity = passagemRepository.findById(idPassagem).get();
 		passagemEntity.setPrecoTotalPassagem(precoTotal);
 		passagemRepository.save(passagemEntity);
 	}
 
+	@Override
 	public void comprarPassagem(ComprarPassagemRequest request) {
 		Voo voo = vooService.buscarVoo(request.getVooId());
 		List<ClasseAviao> classeAviao = classeAviaoService.buscarClassesPorVoo(voo);

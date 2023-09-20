@@ -1,7 +1,5 @@
 package br.com.hrzon.hrzonvoo.request;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ClasseAviaoRequestAlterar {
 
 	@JsonProperty("classeAviao_id")
-	private UUID id;
+	private Long id;
 
 	@JsonProperty("aeroportoOrigem")
 	private String tipoClasse;

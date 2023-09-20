@@ -1,5 +1,6 @@
 package br.com.hrzon.hrzonvoo.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,6 +15,7 @@ import lombok.Data;
 public class Aeroporto {
 
 	@Id
+	@Column(name = "codigoIATA", unique = true, nullable = false)
 	private String codigoIATA;
 
 	private String nome;

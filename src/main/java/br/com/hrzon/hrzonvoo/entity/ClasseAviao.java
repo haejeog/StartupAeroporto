@@ -1,9 +1,9 @@
 package br.com.hrzon.hrzonvoo.entity;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +16,9 @@ import lombok.Data;
 @Data
 public class ClasseAviao {
 	@Id
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "classeaviao_id", unique = true, nullable = false)
+	private Long id;
 
 	@Column(name = "tipoClasse", nullable = false, length = 255)
 	private String tipoClasse;

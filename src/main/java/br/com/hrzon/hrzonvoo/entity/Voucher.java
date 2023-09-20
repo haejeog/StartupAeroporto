@@ -1,8 +1,9 @@
 package br.com.hrzon.hrzonvoo.entity;
 
-import java.util.UUID;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,7 +15,9 @@ import lombok.Data;
 public class Voucher {
 
 	@Id
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "voucher_id", unique = true, nullable = false, length = 32)
+	private Long id;
 
 	private String numeroPassagem;
 	private String numeroVoo;

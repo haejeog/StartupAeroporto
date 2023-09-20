@@ -11,7 +11,6 @@ import br.com.hrzon.hrzonvoo.repository.ClasseAviaoRepository;
 import br.com.hrzon.hrzonvoo.request.ClasseAviaoRequest;
 import br.com.hrzon.hrzonvoo.request.ClasseAviaoRequestAlterar;
 import br.com.hrzon.hrzonvoo.service.ClasseAviaoService;
-import br.com.hrzon.hrzonvoo.util.Util;
 
 @Service
 public class ClasseAviaoServiceImpl implements ClasseAviaoService {
@@ -21,7 +20,6 @@ public class ClasseAviaoServiceImpl implements ClasseAviaoService {
 	@Override
 	public ClasseAviao criarClasse(ClasseAviaoRequest classeRequest) {
 		ClasseAviao classeAviao = new ClasseAviao();
-		classeAviao.setId(Util.gerarUUID());
 		classeAviao.setQuantidadeAssentos(classeRequest.getQuantidadeAssentos());
 		classeAviao.setTipoClasse(classeRequest.getTipoClasse());
 		classeAviao.setValorAssento(classeRequest.getValorAssento());

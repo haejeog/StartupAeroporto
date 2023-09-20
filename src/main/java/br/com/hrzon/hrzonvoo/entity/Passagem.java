@@ -1,9 +1,11 @@
 package br.com.hrzon.hrzonvoo.entity;
 
 import java.util.Date;
-import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,7 +19,9 @@ import lombok.Data;
 public class Passagem {
 
 	@Id
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "passagem_id", unique = true, nullable = false)
+	private Long id;
 
 	private String numeroIdentificacaoUnico;
 	private String nomePassageiro;
